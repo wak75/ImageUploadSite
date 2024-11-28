@@ -2,7 +2,8 @@
     text-decoration: none;
   }
   header{
-    background-color: rgb(83, 76, 75);
+    background-color: rgb(110, 106, 237);
+    border-radius: 8px;
   }
   .navbar{
     padding-left: 15px;
