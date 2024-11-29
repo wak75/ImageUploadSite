@@ -1,60 +1,126 @@
-*{
-    text-decoration: none;
-  }
-  header{
-    background-color: rgb(83, 76, 75);
-  }
-  .navbar{
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-  .navdiv{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.5%;
+* {
+  text-decoration: none;
+}
 
-  }
-    a{
-    font-size: 40px;
-    font-weight: 500;
-    color: beige;
-  }
-  .divimg{
-    list-style: none;
-    display: flex;
-    flex-direction: row-reverse;
-  }
-  img{
-    width: 3%;
-    height: 3%;
-  }
-  
-  .upload{
-    position: relative;
-    margin-top: 2%;
-    padding-right: 2%;
-    display: flex;
-    flex-direction: row-reverse;
-  }
+header {
+  background-color: rgb(110, 106, 237);
+  border-radius: 8px;
+}
 
-  .upload-button {
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 16px;
-    color: white;
-    background-color: #007bff; 
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-align: center;
-    transition: background-color 0.3s ease;
-  }
+.navbar {
+  padding-left: 15px;
+  padding-right: 15px;
+}
 
-  .upload-button:hover {
-    background-color: #0056b3; 
-  }
+.navdiv {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5%;
 
-  .upload-input {
-    display: none; 
-  }
+}
+
+a {
+  font-size: 40px;
+  font-weight: 500;
+  color: beige;
+}
+
+.divimg {
+  list-style: none;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+img {
+  width: 3%;
+  height: 3%;
+}
+
+.upload {
+  position: relative;
+  margin-top: 2%;
+  padding-right: 2%;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.upload-button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.upload-button:hover {
+  background-color: #0056b3;
+}
+
+.upload-input {
+  display: none;
+}
+
+.App {
+  text-align: center;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 5%;
+}
+
+.card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin: 10px;
+  padding: 10px;
+  width: 200px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.card-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.uploadcard {
+  border-style: dotted;
+  border-color: rgb(190, 189, 219);
+  border-radius: 8px;
+  margin: 10px;
+  padding: 10px;
+  padding-left: 50px;
+  width: 150px;
+  box-shadow: 0 2px 5px rgba(236, 232, 232, 0.1);
+  align-content: center;
+}
+
+.uploadIcon {
+  width: 120px;
+  height: 120px;
+  color: rgb(110, 106, 237);
+  ;
+}
+
+h1 {
+  text-align: center;
+  font-size: 50px;
+  font-style: italic;
+  color: blue;
+}
