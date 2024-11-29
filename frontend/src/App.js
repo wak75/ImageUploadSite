@@ -4,7 +4,8 @@ import './App.css';
 import Dashboard from './dashboard/Dashboard';
 import Home from './Home';
 import Logout from './Logout';
- // Assuming you have a Header component
+import Login from './dashboard/Login'
+import Home from './Home'; // Assuming you have a Header component
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/logout" element={<Logout />} />
+        <Route path="/login" element={<Login />}/>
       </Routes>
     </Router>
   );
