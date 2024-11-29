@@ -1,12 +1,16 @@
 import mongoose from 'mongoose'
 
-export const connectDB = async ()=>{
+const dbConnect = async () =>{
+
+
     try {
-        const connection = await mongoose.connect(process.env.MONGO)
-        console.log(`successfully connected to DataBase`)
-        console.log(connection.connection.host)
-        console.log(connection.connection.name)
+        const connect = await mongoose.connect(process.env.MONGO)
+        console.log("Connection to Remote is successful")
+        console.log(`DB name = ${connect.connection.name}`)
+        console.log(`Connection id = ${connect.connection.id}`)
+        
     } catch (error) {
-        console.log(`"Failed to connect to Database: ${error}`)
+        console.log(`Conneciton to Remote failed ${error}`)
     }
 }
+export default dbConnect;
