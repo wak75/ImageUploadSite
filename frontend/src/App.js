@@ -5,7 +5,6 @@ import Dashboard from './dashboard/Dashboard';
 import Home from './Home';
 import Logout from './Logout';
 import Login from './dashboard/Login'
-import Home from './Home'; // Assuming you have a Header component
 
 function App() {
   return (
