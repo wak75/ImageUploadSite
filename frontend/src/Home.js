@@ -11,12 +11,7 @@ export default function Home() {
 
   const [images, setImages] = useState(bucket);
 
-  const handleDelete = (index) => {
-    const updatedImages = images.filter((_, i) => i !== index);
-    // const updatedToggleStates = toggleStates.filter((_, i) => i !== index);
-    setImages(updatedImages);
-    // setToggleStates(updatedToggleStates);
-  };
+
   return (
     <div>
       <Header />
