@@ -68,6 +68,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    margin-top: 5%;
   }
   
   .card {
@@ -90,4 +91,22 @@
     justify-content: space-between;
     align-items: center;
     margin-top: 10px;
+  }
+
+  .uploadcard{
+    border-style: dotted;
+    border-color: rgb(190, 189, 219);
+    border-radius: 8px;
+    margin: 10px;
+    padding: 10px;
+    padding-left: 50px;
+    width: 150px;
+    box-shadow: 0 2px 5px rgba(236, 232, 232, 0.1);
+    align-content: center;
+  }
+
+  .uploadIcon{
+    width: 120px;
+    height: 120px; 
+    color: rgb(110, 106, 237);;
   }
