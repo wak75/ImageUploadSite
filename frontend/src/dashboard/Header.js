@@ -17,7 +17,7 @@ function Header(props) {
               <a href="\">ImageUpload</a>
             </div>
             <div className="divimg" onClick={toggleMenu}>
-              <img src="/assets/img/user.png" alt="" />
+              <img src="/assets/img/img1.jpeg" alt="" />
               {menuVisible && (
                 <div className="menu">
                   <ul>
