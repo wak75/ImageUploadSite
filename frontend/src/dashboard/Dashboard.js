@@ -3,6 +3,7 @@ import "./Dashboard.css";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
 import { BsImage } from "react-icons/bs";
+import Header from "./Header";
 
 const bucket = [
   "assets/img/img1.jpeg",
@@ -22,18 +23,8 @@ export default function Dashboard() {
 
   return (
     <div>
-      <header>
-        <nav className="navbar">
-          <div className="navdiv">
-            <div>
-              <a href="\">ImageUpload</a>
-            </div>
-            <div className="divimg">
-              <img src="/assets/img/user.png" alt="" />
-            </div>
-          </div>
-        </nav>
-      </header>
+     <Header/>
+     <h1>Dashboard</h1>
       <div className="card-container">
         {images.map((image, index) => (
           <div className="card" key={index}>
