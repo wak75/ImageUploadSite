@@ -31,7 +31,7 @@ const uploadImage = async (req ,res)=>{
             filePath: blobName, 
             imageUrl:imageUrl,
             uploader:req.user.id,
-            currentstauts: defaultStatus,
+            isPublic: false,
         })
         await image.save()
 
@@ -102,14 +102,14 @@ const toggleVisibility = async (req, res) => {
             });
         }
 
-        image.currentstauts = image.currentstauts === 'public' ? 'private' : 'public';
+        image.isPublic = image.isPublic === false ? true : false ;
         await image.save();
 
         return res.status(200).json({
             message: `Image visibility updated to ${image.currentstauts}`,
             imageId: imageid,
             owner: name,
-            visibility: image.currentstauts
+            visibility: image.isPublic
         });
 
     } catch (error) {
