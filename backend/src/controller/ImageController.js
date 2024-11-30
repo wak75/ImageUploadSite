@@ -162,7 +162,7 @@ const deleteImage = async (req, res) =>{
 
         
         const blobServiceClient = BlobServiceClient.fromConnectionString(process.env.CONNECTION_STRING)
-        const containerClient = blobServiceClient.getContainerClient(process.env.AZURE_CONTAINER_NAME)
+        const containerClient = blobServiceClient.getContainerClient(process.env.CONTAINER_NAME)
         const blobClient = containerClient.getBlobClient(image.filePath)
         await blobClient.delete()
         

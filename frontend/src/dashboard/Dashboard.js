@@ -18,8 +18,13 @@ export default function Dashboard() {
   const [images, setImages] = useState([]);
   const navigate = useNavigate();
   const isToken = localStorage.getItem('token');
-  const userData = jwtDecode(isToken);
-  const userName= userData.user.name;
+  let userData = null;
+  let userName = null;
+  if (isToken){
+  userData = jwtDecode(isToken);
+  userName= userData.user.name;
+  }
+  
 
   const fetchData = async () => { 
    try {
@@ -90,6 +95,7 @@ export default function Dashboard() {
         Authorization: `Bearer ${isToken}`,
       },
     });
+    fetchData();
 
     console.log(response);
   }catch(error){
@@ -112,7 +118,7 @@ export default function Dashboard() {
             <div className="card-actions">
               <FormControlLabel
                 label="Private"
-                control={<Switch defaultChecked  onChange={() => handleSwitchChange(image._id)}/>}
+                control={<Switch checked={!image.isPublic}   onChange={() => handleSwitchChange(image._id)}/>}
                 labelPlacement="start"
               />
               <button onClick={() => handleDelete(image._id)}>Delete</button>
