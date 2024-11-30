@@ -9,7 +9,7 @@ const uploadImage = async (req ,res)=>{
     try{
 
         const blobServiceClient = BlobServiceClient.fromConnectionString(process.env.CONNECTION_STRING)
-        const containerClient = blobServiceClient.getContainerClient(process.env.AZURE_CONTAINER_NAME)
+        const containerClient = blobServiceClient.getContainerClient(process.env.CONTAINER_NAME)
         console.log("!!!!!!!!!!!!!")
         
         
