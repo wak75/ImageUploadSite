@@ -7,10 +7,12 @@ import page_route from './routes/PagesRoute.js'
 import ImageRoute from './routes/ImageUploadRoutes.js'
 import galleryRoute from './routes/GalleryRoute.js'
 import connectToBlob from './config/AzureConnection.js'
+import cors from 'cors'
 dotenv.config()
 const port = process.env.PORT || 6000
 const app = express()
 app.use(express.json())
+app.use(cors())
 
 dbConnect()
 // connectToBlob()

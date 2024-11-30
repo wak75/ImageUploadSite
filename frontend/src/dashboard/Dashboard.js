@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Dashboard.css";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
 import { BsImage } from "react-icons/bs";
 import Header from "./Header";
+import {useNavigate} from 'react-router-dom'
+import {jwtDecode} from 'jwt-decode';
+import axios from 'axios';
 
 const bucket = [
   "assets/img/img1.jpeg",
@@ -12,13 +15,87 @@ const bucket = [
 ];
 
 export default function Dashboard() {
-  const [images, setImages] = useState(bucket);
+  const [images, setImages] = useState([]);
+  const navigate = useNavigate();
+  const isToken = localStorage.getItem('token');
+  const userData = jwtDecode(isToken);
+  const userName= userData.user.name;
 
-  const handleDelete = (index) => {
-    const updatedImages = images.filter((_, i) => i !== index);
-    // const updatedToggleStates = toggleStates.filter((_, i) => i !== index);
-    setImages(updatedImages);
-    // setToggleStates(updatedToggleStates);
+  const fetchData = async () => { 
+   try {
+        const response = await fetch(`http://localhost:4500/api/images/${userName}/allimages`, {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${isToken}`,
+          }
+        });
+        const data = await response.json();
+        console.log(data);
+        setImages(data);
+        console.log(images);
+      } catch (error) {
+        console.log(`${error}`);
+      }
+    
+  };
+ 
+  useEffect(() => {
+    if (!isToken) {
+      navigate('/login');
+    } else {    
+    fetchData();
+    }
+  }, [navigate]);
+
+  const handleDelete = async (id) => {
+    console.log(isToken);
+    try{
+      const response=  await axios.post(`http://localhost:4500/api/images/${userName}/${id}/delete`,"",{
+        headers: {
+          Authorization:`Bearer ${isToken}`,
+        }
+      });
+
+      console.log(response);
+      fetchData();
+    }catch(error){
+      console.log("Erorr in deleting image", error);
+    }
+
+  };
+
+  const handleUpload = async (event) => {
+    const file = event.target.files[0];
+    const formData = new FormData();
+    formData.append('image', file);
+
+    try {
+      const response = await axios.post(`http://localhost:4500/api/images/${userName}/upload`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${isToken}`
+        },
+      });
+      console.log(response);
+      fetchData();
+    } catch (error) {
+      console.error('Error uploading image:', error);
+    }
+  };
+
+  const handleSwitchChange =  async(id) => {
+   try{
+    const response = await axios.post(`http://localhost:4500/api/images/${userName}/${id}/visibility`, "", {
+      headers: {
+        Authorization: `Bearer ${isToken}`,
+      },
+    });
+
+    console.log(response);
+  }catch(error){
+    console.log("Error in updating image", error);
+  }
+  console.log("Switch changed");
   };
 
   return (
@@ -26,20 +103,19 @@ export default function Dashboard() {
      <Header/>
      <h1>Dashboard</h1>
       <div className="card-container">
-        {images.map((image, index) => (
-          <div className="card" key={index}>
+        {images.map((image) => (
+          <div className="card" key={image._id}>
             <img
-              src={image}
-              alt={`Image ${index + 1}`}
+              src={image.imageUrl}
               className="card-image"
             />
             <div className="card-actions">
               <FormControlLabel
                 label="Private"
-                control={<Switch defaultChecked />}
+                control={<Switch defaultChecked  onChange={() => handleSwitchChange(image._id)}/>}
                 labelPlacement="start"
               />
-              <button onClick={() => handleDelete(index)}>Delete</button>
+              <button onClick={() => handleDelete(image._id)}>Delete</button>
             </div>
           </div>
         ))}
@@ -47,7 +123,7 @@ export default function Dashboard() {
         <label htmlFor="drop-file" className="uploadLabel">
           <BsImage className="uploadIcon" />
           <h2>Add Images</h2>
-          <input type="file" name="gallery-img" id="drop-file" hidden />
+          <input type="file" name="gallery-img" id="drop-file" hidden onChange={handleUpload} />
         </label>
       </div>
       </div>

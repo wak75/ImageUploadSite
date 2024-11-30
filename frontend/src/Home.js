@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "./dashboard/Header";
 import "./Home.css";
 
@@ -9,7 +9,30 @@ export default function Home() {
     "assets/img/img3.jpeg",
   ];
 
-  const [images, setImages] = useState(bucket);
+
+  const [images, setImages] = useState([]);
+
+  
+  useEffect(() => {
+    const fetchData = async () => {
+        try {
+          const response = await fetch("http://localhost:4500/gallery", {
+            method: 'GET',
+          });
+          const data = await response.json();
+        console.log(data);
+		setImages(data);
+        } catch (error) {
+          console.log(`${error}`);
+        }
+
+    };
+    fetchData();
+  }, []);
+
+
+//   const [images, setImages] = useState(mainBucket);
+//   console.log(images);
 
 
   return (
@@ -17,11 +40,10 @@ export default function Home() {
       <Header />
 	  <h1>Gallery</h1>
 	  <div className="card-container">
-        {images.map((image, index) => (
-          <div className="card" key={index}>
+        {images.map((image) => (
+          <div className="card" key={image._id}>
             <img
-              src={image}
-              alt={`Image ${index + 1}`}
+              src={image.imageUrl}
               className="card-image"
             />
           </div>
